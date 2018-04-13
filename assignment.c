@@ -1,6 +1,20 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<pthread.h>
+void  *threadcall(void *p)
+{
+  while(thread<100)
+  {
+  pthread_mutex_lock(&mutex);
+  if(thread>=100)
+  {
+    pthread_mutux_unlock(&mutuex);
+    break;
+  }
+    thread++;
+    pthread_mutex_unlock(&mutex);
+    }
+}
 int main()
 {
   int i;

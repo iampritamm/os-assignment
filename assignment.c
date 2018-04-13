@@ -2,31 +2,30 @@
 #include<stdlib.h>
 #include<stdbool.h>
 #include<pthread.h>
-#define MIN_PID=250;
-#define MAX_PID=4500;
-int threadCount=1
+#define MIN_PID 250
+#define MAX_PID 4500
+int threadCount=1;
 pthread_mutex_t mutex;
 int tid=300;
 struct pid_tab
 {
-  
   int pid;
   bool bitmap;
 }pidArr[4700];
+
 int allocate_map(void)
 {
   int i,j;
-  for(i=MIN_PID, j=0;i<MAX_PID;i++;j++)
+  for(i=MIN_PID, j=0;i<MAX_PID;i++,j++)
   {
     pidArr[j].bitmap=0;
   }
-    if(i==MAX_PID && J==4700)
+    if(i==MAX_PID && j==4700)
       return 1;
 } 
 
 int  allocate_pid()
 {
-  
   int j=1;
   while(j>=0)
   {
@@ -35,7 +34,7 @@ int  allocate_pid()
     if(j<threadCount)
     {
       pidArr[threadCount].pid=pidArr[j].pid;
-      pid[j].bitmap=1;
+      pidArr[j].bitmap=1;
       pidArr[threadCount].bitmap=1;
       return 0;
     }
@@ -48,13 +47,13 @@ int  allocate_pid()
       return tid;
     }
   }
-  j++
+  j++;
   }
 }
   
 void release_pid(int pid)
 {
-	printf("\n---------------------------------------------------);
+	printf("\n---------------------------------------------------");
 	printf("\n\nProcess %d finished, releasing its Processid.\n",pid);
 	sleep(2);
 	printf("\n\nprocessifforprocess%d released %d\n",pid,pidArr[pid].pid);
@@ -96,9 +95,10 @@ void* threadCall(void* voidA)
 }
 void execute()
 {
+  int z=0;
   pthread_t thread[100];
   pthread_mutex_init(&mutex,NULL);
-  allocate_map()
+  allocate_map();
   for(z=0;z<100;z++)
   {
     pthread_create(&thread[z],NULL,threadCall,NULL);

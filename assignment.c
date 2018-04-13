@@ -7,35 +7,28 @@ int MAX_PID=4500;
 pthread_mutex_t mutex;
 struct pid_tab
 {
+  
   int pid;
   bool bitmap;
-}
+}pidArr[4700];
 int allocate_map(void)
 {
   int i,j;
   for(i=MIN_PID, j=0;i<MAX_PID;i++;j++)
   {
     pidArr[j].bitmap=0;
+  }
     if(i==MAX_PID && J=4700)
       return 1;
-  }
 } 
 int  allocate_pid()
 {
-void  *threadcall(void *p)
-{
-  pthread_mutex_lock(&mutex);
-  if(thread>=100)
-    int j=1;
+  
+  int j=1;
   while(j>=0)
   {
     if(pidArr[j].bitmap==0)
-    { 
-    pthread_mutex_unlock(&mutex);
-    break;
-    }
-      thread++;
-  pthread_mutex_unlock(&mutex); 
+    {  
     if(j<threadVar)
     {
       pidArr[threadVar].pid=pidArr[j].pid;
@@ -45,6 +38,7 @@ void  *threadcall(void *p)
     }
     else
     {
+      
       pidArr[j].pid=tid;
       tid+=1;
       pidArr[j].bitmap=1;
@@ -52,6 +46,7 @@ void  *threadcall(void *p)
     }
   }
   j++
+  }
 }
   
 void release_pid(int pid)
@@ -82,10 +77,11 @@ void* threadCall(void* voidA)
   }
   pthread_mutex_unlock(&mutex);
 }
-int main()
+void execute()
 {
   int i;
   pthread_t thread[50];
+  void e
   allocate_map();
   for(i=0;i<100;i++)
   {
@@ -93,4 +89,27 @@ int main()
   pthread_create(&thread[i],NULL,threadCall,NULL);
   threadCall(NULL);
   }
+  int z=0;
+  pthread_t thread[100];
+  pthread_mutex_init(&mutex,NULL);
+  allocate_map()
+  for(z=0;z<100;z++)
+  {
+    pthread_create(&thread[z],NULL,threadCall,NULL);
+  }
+  for(z=0;z<100;z++)
+  {
+    pthread_join(thread[z],NULL);
+  }
+  
+}
+int main()
+{
+  printf("\t\t\t ********************************\n");
+	printf("\t\t\t    THREAD CREATION INIITIATED\n");
+	printf("\t\t\t ********************************");
+  sleep(2); 
+	printf("\n\nProcesses will be given process id's and locks are used to avoid race condition.");      
+	sleep(3);
+  execute();
 }

@@ -1,10 +1,12 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<stdbool.h>
 #include<pthread.h>
-
-int MIN_PID=250;
-int MAX_PID=4500;
+#define MIN_PID=250;
+#define MAX_PID=4500;
+int threadCount=1
 pthread_mutex_t mutex;
+int tid=300;
 struct pid_tab
 {
   
@@ -18,9 +20,10 @@ int allocate_map(void)
   {
     pidArr[j].bitmap=0;
   }
-    if(i==MAX_PID && J=4700)
+    if(i==MAX_PID && J==4700)
       return 1;
 } 
+
 int  allocate_pid()
 {
   
@@ -29,11 +32,11 @@ int  allocate_pid()
   {
     if(pidArr[j].bitmap==0)
     {  
-    if(j<threadVar)
+    if(j<threadCount)
     {
-      pidArr[threadVar].pid=pidArr[j].pid;
+      pidArr[threadCount].pid=pidArr[j].pid;
       pid[j].bitmap=1;
-      pidArr[threadVar].bitmap=1;
+      pidArr[threadCount].bitmap=1;
       return 0;
     }
     else
@@ -51,45 +54,48 @@ int  allocate_pid()
   
 void release_pid(int pid)
 {
-  int i=0;
-  for(i=0;i<4300;i++)
-  {
-    if(pidArr[i].pid=pid)
-    {
-      printf("\npid reaseased: %d",pidArr[i].pid);
-      pidArr[i].bitmap=0;
-    }
-  }
+	printf("\n---------------------------------------------------);
+	printf("\n\nProcess %d finished, releasing its Processid.\n",pid);
+	sleep(2);
+	printf("\n\nprocessifforprocess%d released %d\n",pid,pidArr[pid].pid);
+	pidArr[pid].bitmap=0;
 }
 void* threadCall(void* voidA)
 {
-  pthread_mutex_lock(&mutex);
-  allocate_pid();
-  sleep(1);
-  threadVar++;
-  printf("\n\nProcess Number: %d",threadVar);
-  printf("\n\nProcess Id Allocated:%d \n",pid[threadVar-1].pid);
-  if(threadVar==31)
-  {
-    release_pid(320);
-    release_pid(321);
-    release_pid(322);
+  	if (threadCount == 21)
+       		{
+       		printf("\n------------------------------------------------------------------------------");
+       		
+       		printf("\n\t\t********Process release initiated*******\n");
+       		
+       		sleep(1);
+       		
+			release_pid(10);
+       		
+			release_pid(11);
+			
+			release_pid(13);
+       		}
+       		if (threadCount == 31)
+       		{
+       		printf("\n------------------------------------------------------------------------------");
+
+       		printf("\n\t\t********Process release initiated*******\n");
+       		
+			sleep(1);
+			           
+			release_pid(1);
+       		
+			release_pid(2);
+			
+			release_pid(21);
+       		}
+       		  pthread_mutex_unlock(&mutex); 
   }
   pthread_mutex_unlock(&mutex);
 }
 void execute()
 {
-  int i;
-  pthread_t thread[50];
-  void e
-  allocate_map();
-  for(i=0;i<100;i++)
-  {
-  pthread_mutuex init(&mutex,NULL);
-  pthread_create(&thread[i],NULL,threadCall,NULL);
-  threadCall(NULL);
-  }
-  int z=0;
   pthread_t thread[100];
   pthread_mutex_init(&mutex,NULL);
   allocate_map()
